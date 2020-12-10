@@ -2,7 +2,6 @@
 #include <string.h>
 #include <time.h>
 #include <stdlib.h>
-#include <ctype.h>
 #include "forcateste.h"
 
 
@@ -12,9 +11,9 @@ char palavrasecreta[TAMANHO_PALAVRA];
 char chutes[26];
 int chutesdados = 0;
 
-//criando uma função
+//criando uma funÃ§Ã£o
 void abertura() {
-	// imprime cabeçalho
+	// imprime cabeÃ§alho
 	printf("/****************/\n");
 	printf("/ Jogo de Forca */\n");
 	printf("/****************/\n\n");
@@ -23,10 +22,10 @@ void abertura() {
 void chuta() {
 	//captura um novo chute
 	char chute;
-	//toda vez que usar char coloque um espaço antes do %c para não dar buffer
+	//toda vez que usar char coloque um espaÃ§o antes do %c para nÃ£o dar buffer
 	scanf(" %c", &chute);
 	
-	//guardo chute no array chutes e faça chutesdados++
+	//guardo chute no array chutes e faÃ§a chutesdados++
 	if(chute >= 'A' && chute <= 'Z') {
 		chutes[chutesdados] = chute;
 		(chutesdados)++;
@@ -40,10 +39,10 @@ int jachutou(char letra) {
 	int achou = 0;
 	
 	//varrendo o array chutes para ver se a palavra ja foi chutada
-	//int = 0 é pq o array começo no 0
+	//int = 0 Ã© pq o array comeÃ§o no 0
 	//j tem q se menor que a palavra secreta 
 	for(int j = 0; j < chutesdados; j++) {
-		//se a letra em chutes na posição j foi igual a posição i já foi chutada
+		//se a letra em chutes na posiÃ§Ã£o j foi igual a posiÃ§Ã£o i jÃ¡ foi chutada
 		if(chutes[j] == letra) {
 			achou = 1;
 			break;
@@ -70,8 +69,8 @@ void desenhaforca() {
 	printf("_|___           \n");
 	printf("\n\n");
 	
-	//varrendo o array e colocando - em cada posição
-	//int = 0 é pq o array começo no 0
+	//varrendo o array e colocando - em cada posiÃ§Ã£o
+	//int = 0 Ã© pq o array comeÃ§o no 0
 	//i tem q se menor que a palavra secreta 
 	for(int i = 0; i < strlen(palavrasecreta); i++) {
 			
@@ -92,7 +91,7 @@ void adicionapalavra() {
 	char quer;
 	
 	printf("Voce desejar a adicionar uma nova palavra no jogo? (S/N) ");
-	//espaço %c sinaliza que só quer ler um char
+	//espaÃ§o %c sinaliza que sÃ³ quer ler um char
 	scanf(" %c", &quer);
 	
 	if(quer == 'S' or quer == 's') {
@@ -105,7 +104,7 @@ void adicionapalavra() {
 		//r+ leitura e escrita
 		f = fopen("palavras.txt", "r+");	
 		if(f == 0) {
-			printf("Desculpe, BD não disponivel\n\n");
+			printf("Desculpe, BD nÃ£o disponivel\n\n");
 			exit(1);
 		}
 	
@@ -113,13 +112,13 @@ void adicionapalavra() {
 		int qtd;
 		//le a quantidade do arquivo
 		fscanf(f, "%d", &qtd);
-		//adicionando +1 na variavel e não arquivo
+		//adicionando +1 na variavel e nÃ£o arquivo
 		//representa a linha do numero
 		qtd++;
 		
 		//para posicionar o ponteiro em outro lugar
-		//nome do arquivo e sua posição
-		//é uma constante em relação a posição passada
+		//nome do arquivo e sua posiÃ§Ã£o
+		//Ã© uma constante em relaÃ§Ã£o a posiÃ§Ã£o passada
 		fseek(f, 0, SEEK_SET);
 		fprintf(f, "%d", qtd);
 		
@@ -142,7 +141,7 @@ void escolhepalavra() {
 	f = fopen("palavras.txt", "r");
 	
 	if(f == 0) {
-		printf("Desculpe, BD não disponivel\n\n");
+		printf("Desculpe, BD nÃ£o disponivel\n\n");
 		exit(1);
 	}
 	
@@ -152,13 +151,13 @@ void escolhepalavra() {
 	//saida do arquivo
 	fscanf(f, "%d", &qtddepalavras);
 	
-	//escolhendo uma linha aleatória com uma semente
+	//escolhendo uma linha aleatÃ³ria com uma semente
 	srand(time(0));
 	//faz o resto da quantidade de inteiros o rand 
 	//pelo o numero de palavras
 	int randomico = rand() % qtddepalavras;
 	
-	//percorre as linhas até achar a linha escolhida que esta no randomico
+	//percorre as linhas atÃ© achar a linha escolhida que esta no randomico
 	//coloca na palavra secreta
 	for(int i = 0; i <= randomico; i++) {
 		fscanf(f, "%s", palavrasecreta);
@@ -231,7 +230,7 @@ int main() {
         printf("        '-------'       \n\n");
  
     } else {
-        printf("\nPuxa, você foi enforcado!\n");
+        printf("\nPuxa, vocÃª foi enforcado!\n");
         printf("A palavra era **%s**\n\n", palavrasecreta);
  
         printf("    _______________         \n");
